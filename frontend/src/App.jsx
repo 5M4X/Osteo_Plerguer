@@ -14,6 +14,7 @@ const audiences = [
 ]
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`
+const reviewsWidgetId = '038d8a04-0da2-4bef-89b2-63a521efd7d6'
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>
@@ -21,6 +22,21 @@ function Arrow() {
 
 function Brand() {
   return <><img className="brand-logo" src={assetUrl('images/LogoMLB.png')} alt="" /><span><strong>OSTÉO</strong><small>PLERGUER</small></span></>
+}
+
+function GoogleReviews() {
+  useEffect(() => {
+    const scriptId = 'elfsight-platform'
+    if (document.getElementById(scriptId)) return
+
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.src = 'https://apps.elfsight.com/p/platform.js'
+    script.defer = true
+    document.body.appendChild(script)
+  }, [])
+
+  return <div className={`elfsight-app-${reviewsWidgetId}`} />
 }
 
 export default function App() {
@@ -92,7 +108,9 @@ export default function App() {
 
         <section className="cabinet-section" id="cabinet" aria-labelledby="cabinet-title"><div className="cabinet-card"><div className="map-pin" aria-hidden="true">●</div><p className="section-label"><span>04</span> Le cabinet</p><h2 id="cabinet-title">À Plerguer,<br /><em>près de vous.</em></h2><address>Salle 5, Square Bertrand Robidou<br />35540 Plerguer</address><a className="text-link" href="https://maps.google.com/?q=Square+Bertrand+Robidou+35540+Plerguer" target="_blank" rel="noreferrer">Voir l’itinéraire <Arrow /></a></div><div className="info-card"><p className="info-kicker">Horaires</p><div className="hours"><p><span>Lundi — vendredi</span><strong>9h — 13h · 14h — 19h</strong></p><p><span>Samedi</span><strong>9h — 13h</strong></p></div><div className="access"><p className="info-kicker">Accès</p><p>Rez-de-chaussée · Salle d’attente porte 5<br />Parking de la Maison de Santé à proximité</p></div><a className="appointment" href="https://www.doctolib.fr/osteopathe/plerguer/maxime-lebreton" target="_blank" rel="noreferrer">Prendre rendez-vous <Arrow /></a></div></section>
 
-        <section className="contact-banner" aria-labelledby="contact-title"><div><p className="section-label"><span>05</span> Contact</p><h2 id="contact-title">Une question avant<br /><em>votre rendez-vous ?</em></h2></div><div><p>Vous pouvez réserver directement en ligne ou contacter le cabinet par téléphone.</p><a className="big-phone" href="tel:+33629211977">06 29 21 19 77 <Arrow /></a></div></section>
+        <section className="reviews-section" id="avis" aria-labelledby="reviews-title"><div className="reviews-heading"><p className="section-label"><span>05</span> Avis</p><h2 id="reviews-title">Ils en parlent<br /><em>mieux que nous.</em></h2><p>Découvrez les avis laissés par les patients du cabinet.</p></div><GoogleReviews /></section>
+
+        <section className="contact-banner" aria-labelledby="contact-title"><div><p className="section-label"><span>06</span> Contact</p><h2 id="contact-title">Une question avant<br /><em>votre rendez-vous ?</em></h2></div><div><p>Vous pouvez réserver directement en ligne ou contacter le cabinet par téléphone.</p><a className="big-phone" href="tel:+33629211977">06 29 21 19 77 <Arrow /></a></div></section>
       </main>
 
       <footer><a className="brand" href="#accueil"><Brand /></a><p>Cabinet d’ostéopathie<br />Maxime Lebreton</p><div><a href="https://www.doctolib.fr/osteopathe/plerguer/maxime-lebreton" target="_blank" rel="noreferrer">Rendez-vous en ligne</a><span>© {new Date().getFullYear()}</span></div></footer>
