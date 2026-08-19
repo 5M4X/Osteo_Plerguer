@@ -5,6 +5,7 @@ const navigation = [
   { href: '#consultation', label: 'La consultation' },
   { href: '#pour-qui', label: 'Pour qui ?' },
   { href: '#cabinet', label: 'Le cabinet' },
+  { href: '#avis', label: 'Avis' },
 ]
 
 const audiences = [
